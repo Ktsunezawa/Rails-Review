@@ -27,17 +27,14 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update(user_params)
-       redirect_to users_path
-    else
-      render edit
-    end
+    @user.update(user_params)
+    redirect_to users_path
   end
 
   private
 
   def user_params
-    require(:user).permit(:name, :introduce, :profile_image)
+    params.require(:user).permit(:name, :introduce, :profile_image)
   end
 
 end
