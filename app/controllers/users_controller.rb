@@ -8,11 +8,21 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @books = Book.all
+    @books = @user.books
+    @book = Book.new
   end
 
   def edit
     @user = User.find(params[:id])
+  end
+
+  def create
+    @book = Book.new(book_params)
+    if @book.save
+       redirect_to books_path
+    else
+      render new
+    end
   end
 
   def update
@@ -24,15 +34,10 @@ class UsersController < ApplicationController
     end
   end
 
-  def destroy
-    user = User.find(params[:id])
-    user.destroy
-    redirect_to users_path
-  end
-
   private
 
   def user_params
     require(:user).permit(:name, :introduce, :profile_image)
   end
+
 end
