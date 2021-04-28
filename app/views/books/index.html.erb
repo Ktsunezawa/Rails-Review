@@ -1,6 +1,7 @@
-<div class="container">
+<div class="container px-5 px-sm-0">
+  <%= render 'layouts/error', model: @book %>
   <div class="row">
-    <div class="col-md-3">
+   <div class="col-md-3">
       <%= render 'users/form.profile', user: @user %>
       <%= render 'form', book: @book %>
     </div>
